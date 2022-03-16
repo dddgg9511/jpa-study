@@ -6,18 +6,23 @@ import java.util.Date;
 @Entity
 public class Member {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "MEMBER_ID")
     private long id;
 
     private String name;
 
-//    @Column(name = "TEAM_ID")
-//    private Long teamId;
-
     @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
+    @JoinColumn(insertable = false, updatable = false)
     private Team team;
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
     public long getId() {
         return id;
@@ -33,13 +38,5 @@ public class Member {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
     }
 }

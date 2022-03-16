@@ -15,6 +15,7 @@ public class JapMain {
         tx.begin();
 
         try {
+
             tx.commit();
         }
         catch (Exception e){

@@ -1,12 +1,14 @@
 package hellojpa;
 
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Team {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "TEAM_ID")
     private long id;
     private String name;
@@ -36,5 +38,13 @@ public class Team {
 
     public void setMembers(List<Member> members) {
         this.members = members;
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
