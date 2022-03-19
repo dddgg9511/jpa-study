@@ -1,5 +1,6 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Book;
 import jpabook.jpashop.domain.Member;
 
 import javax.persistence.EntityManager;
@@ -17,6 +18,11 @@ public class JapMain {
         tx.begin();
 
         try {
+            Book book = new Book();
+            book.setName("jpa");
+
+            em.persist(book);
+
             tx.commit();
         }
         catch (Exception e){
