@@ -17,18 +17,23 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member = new Member();
-            member.setName("member1");
-            member.setCreateBy("choo");
-            member.setCreatedDate(LocalDateTime.now());
-
-            em.persist(member);
-
             Team team = new Team();
             team.setName("teamA");
-            team.getMembers().add(member);
 
+            Member member = new Member();
+            member.setName("hello");
+
+            team.addMember(member);
+
+            em.persist(member);
             em.persist(team);
+
+            em.flush();
+            em.clear();
+
+            Member m = em.find(Member.class, member.getId());
+
+            System.out.println("m = " + m.getTeam().getClass());
 
             tx.commit();
         }

@@ -41,6 +41,10 @@ public class Team extends BaseEntity{
         this.members = members;
     }
 
+    public void addMember(Member member){
+        this.members.add(member);
+    }
+
     @Override
     public String toString() {
         return "Team{" +
